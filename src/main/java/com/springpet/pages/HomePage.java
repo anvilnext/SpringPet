@@ -1,19 +1,24 @@
 package com.springpet.pages;
 
 import com.springpet.data.BaseData;
-import com.springpet.driver.WebDriverBase;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
+@RequiredArgsConstructor
 public class HomePage {
 
-    private static WebDriver driver = WebDriverBase.getDriver();
+    private WebDriver driver;
 
-    public HomePage() {
+/*    public HomePage() {
         PageFactory.initElements(driver, this);
-    }
+    }*/
 
     public static final String USERNAME_INPUT = "//input[@placeholder='Username']";
     public static final String PASSWORD_INPUT = "//input[@placeholder='Password']";

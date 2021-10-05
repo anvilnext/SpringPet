@@ -1,13 +1,12 @@
+/*
 package com.springpet.basesteps;
 
-import com.springpet.driver.WebDriverBase;
 import org.openqa.selenium.WebDriver;
-
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class DriverBaseSteps {
 
-    private static WebDriver driver = WebDriverBase.getDriver();
+    private WebDriver driver;
 
     public static void maximizeDriver() {
         driver.manage().window().maximize();
@@ -16,4 +15,4 @@ public class DriverBaseSteps {
     public static void quitDriver() {
         driver.quit();
     }
-}
+}*/
