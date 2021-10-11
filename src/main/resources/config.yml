@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: mercury
+---
+spring:
+  profiles: mercury
+properties:
+  browser: chrome
+  environment: mercury-chrome
+  address: https://www.saucedemo.com/
+---
+spring:
+  profiles: venus
+properties:
+  browser: firefox
+  environment: venus-firefox
+  address: https://www.saucedemo.com/

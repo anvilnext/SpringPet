@@ -1,31 +1,38 @@
 package com.springpet.steps;
 
+import com.springpet.basesteps.DriverBaseSteps;
 import com.springpet.models.ui.UserSwag;
 import com.springpet.pages.HomePage;
 import com.springpet.pages.ProductPage;
 import com.springpet.pages.ShoppingCartPage;
 import com.springpet.FrameworkConfiguration;
-import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import lombok.RequiredArgsConstructor;
 import org.junit.Assert;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
 @ContextConfiguration(classes = FrameworkConfiguration.class)
-@RequiredArgsConstructor
 public class UITestsSteps {
 
+    @Autowired
+    private DriverBaseSteps driverBaseSteps;
+
+    @Autowired
     private HomePage homePage;
+
+    @Autowired
     private ProductPage mainPage;
+
+    @Autowired
     private ShoppingCartPage shoppingCartPage;
 
-    /*@Before
-    public static void maximizeDriver() {
-        DriverBaseSteps.maximizeDriver();
-    }*/
+    @Before
+    public void maximizeDriver() {
+        driverBaseSteps.maximizeDriver();
+    }
 
     @Given("I opened Swag Labs homepage")
     public void openPage() {
@@ -56,9 +63,4 @@ public class UITestsSteps {
     public void checkProductInCart(String name) {
         Assert.assertTrue(shoppingCartPage.checkProductIsInCart(name));
     }
-
-    /*@After
-    public static void quitDriver() {
-        DriverBaseSteps.quitDriver();
-    }*/
 }

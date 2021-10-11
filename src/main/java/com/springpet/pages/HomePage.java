@@ -1,24 +1,22 @@
 package com.springpet.pages;
 
-import com.springpet.data.BaseData;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
-public class HomePage {
+@PropertySource(value = "browser.properties")
+public class HomePage implements WebPage {
 
+    @Autowired
     private WebDriver driver;
 
-/*    public HomePage() {
-        PageFactory.initElements(driver, this);
-    }*/
+    @Value("${address:}")
+    private String address;
 
     public static final String USERNAME_INPUT = "//input[@placeholder='Username']";
     public static final String PASSWORD_INPUT = "//input[@placeholder='Password']";
@@ -30,7 +28,7 @@ public class HomePage {
     private WebElement passwordInput;
 
     public void openHomePage() {
-        driver.navigate().to(BaseData.SWAG);
+        driver.navigate().to(address);
     }
 
     public ProductPage login(String username, String password) {

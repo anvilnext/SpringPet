@@ -5,7 +5,7 @@ Feature: Testing UI
     When I login with credentials:
       | username      | password     |
       | standard_user | secret_sauce |
-    Then I am on page URL ending in 'inventory.htmls'
+    Then I am on page URL ending in 'inventory.html'
 
 
   Scenario: Check adding to Shopping Cart
