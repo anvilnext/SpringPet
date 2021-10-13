@@ -1,2 +1,2 @@
 # SpringPet
-This is a pet project using Sprint framework with Cucumber integration.
+This is a pet project using Spring framework with Cucumber integration.
