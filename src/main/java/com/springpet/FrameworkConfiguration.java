@@ -1,24 +1,26 @@
 package com.springpet;
 
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
 @ComponentScan(basePackages = "com.springpet")
-@PropertySource(value = "browser.properties")
+@ConfigurationPropertiesScan(basePackages = "com.springpet")
 @EnableConfigurationProperties
 public class FrameworkConfiguration {
 
-    @Value("${browserName:}")
-    private String browserName;
+    @Getter
+    @Autowired
+    private EnvConfig envConfig;
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
@@ -28,7 +30,7 @@ public class FrameworkConfiguration {
     @Bean
     public WebDriver driver()
     {
-        switch (browserName) {
+        switch (envConfig.getBrowser()) {
             case "firefox":
                 System.setProperty("webdriver.gecko.driver", "webdrivers/geckodriver.exe");
                 System.setProperty("webdriver.gecko.logfile", "/log.log");
