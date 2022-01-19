@@ -1,4 +1,4 @@
-package com.springpet;
+package com.springpet.yaml;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

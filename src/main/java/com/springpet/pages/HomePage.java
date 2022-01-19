@@ -1,12 +1,11 @@
 package com.springpet.pages;
 
-import com.springpet.EnvConfig;
+import com.springpet.yaml.EnvConfig;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component

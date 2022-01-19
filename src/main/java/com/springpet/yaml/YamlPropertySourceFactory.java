@@ -1,4 +1,4 @@
-package com.springpet;
+package com.springpet.yaml;
 
 import org.springframework.boot.env.YamlPropertySourceLoader;
 import org.springframework.core.env.PropertySource;

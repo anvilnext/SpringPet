@@ -1,5 +1,6 @@
 package com.springpet;
 
+import com.springpet.yaml.EnvConfig;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
