@@ -13,6 +13,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
+import static io.vavr.API.$;
+import static io.vavr.API.Case;
+import static io.vavr.API.Match;
+
 @Configuration
 @ComponentScan(basePackages = "com.springpet")
 @ConfigurationPropertiesScan(basePackages = "com.springpet")
@@ -31,21 +35,19 @@ public class FrameworkConfiguration {
     @Bean
     public WebDriver driver()
     {
-        switch (envConfig.getBrowser()) {
-            case "firefox":
-                System.setProperty("webdriver.gecko.driver", "webdrivers/geckodriver.exe");
-                System.setProperty("webdriver.gecko.logfile", "/log.log");
-                System.setProperty("webdriver.gecko.verboseLogging", "true");
-                return new FirefoxDriver();
-
-            case "chrome":
-                System.setProperty("webdriver.chrome.driver", "webdrivers/chromedriver.exe");
-                System.setProperty("webdriver.chrome.logfile", "/log.log");
-                System.setProperty("webdriver.chrome.verboseLogging", "true");
-                return new ChromeDriver();
-
-            default:
-                return null;
-        }
+        return Match(envConfig.getBrowser()).of(
+                Case($("firefox"), () -> {
+                    System.setProperty("webdriver.gecko.driver", "webdrivers/geckodriver.exe");
+                    System.setProperty("webdriver.gecko.logfile", "/log.log");
+                    System.setProperty("webdriver.gecko.verboseLogging", "true");
+                    return new FirefoxDriver();
+                }),
+                Case($("chrome"), () -> {
+                    System.setProperty("webdriver.chrome.driver", "webdrivers/chromedriver.exe");
+                    System.setProperty("webdriver.chrome.logfile", "/log.log");
+                    System.setProperty("webdriver.chrome.verboseLogging", "true");
+                    return new ChromeDriver();
+                })
+        );
     }
 }
